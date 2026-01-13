@@ -49,6 +49,44 @@ function showSlide(i) {
         }
     }
 }
+/* 💖 LOVE BACKGROUND ANIMATION */
+const bgParticles = [];
+
+function createLove() {
+    bgParticles.push({
+        x: Math.random() * canvas.width,
+        y: canvas.height + 20,
+        size: Math.random() * 14 + 10,
+        speed: Math.random() * 0.6 + 0.2,
+        alpha: Math.random() * 0.6 + 0.4,
+        drift: (Math.random() - 0.5) * 0.6
+    });
+}
+
+function drawLoveBackground() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    createLove();
+
+    bgParticles.forEach(p => {
+        ctx.font = `${p.size}px serif`;
+        ctx.fillStyle = `rgba(255,150,200,${p.alpha})`;
+        ctx.fillText("❤", p.x, p.y);
+
+        p.y -= p.speed;
+        p.x += p.drift;
+        p.alpha -= 0.002;
+    });
+
+    // cleanup
+    for (let i = bgParticles.length - 1; i >= 0; i--) {
+        if (bgParticles[i].alpha <= 0) bgParticles.splice(i, 1);
+    }
+}
+setInterval(drawLoveBackground, 30);
+
+/* 🎆 FIREWORKS */
+const fireworks = [];
 
 document.getElementById("openBox").onclick = () => {
     startMusic();
@@ -60,7 +98,7 @@ document.querySelectorAll(".next-btn").forEach(btn => {
 });
 
 /* ❤️ Floating Hearts + Fireworks */
-let hearts = [], fireworks = [];
+let hearts = [];
 
 function spawnHearts() {
     hearts.push({
@@ -91,20 +129,11 @@ document.getElementById("fireBtn").onclick = () => {
 };
 
 function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawLoveBackground();
 
-    spawnHearts();
-    hearts.forEach(h => {
-        ctx.font = `${h.size}px serif`;
-        ctx.fillStyle = `rgba(255,120,180,${h.life})`;
-        ctx.fillText("❤", h.x, h.y);
-        h.y -= h.speed;
-        h.life -= 0.01;
-    });
-    hearts = hearts.filter(h => h.life > 0);
-
+    // fireworks stay on top
     fireworks.forEach(p => {
-        ctx.fillStyle = `rgba(255,200,255,${p.l / 80})`;
+        ctx.fillStyle = `rgba(255,220,255,${p.l / 80})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
         ctx.fill();
@@ -112,11 +141,15 @@ function draw() {
         p.y += Math.sin(p.a) * p.s;
         p.l--;
     });
+
     fireworks = fireworks.filter(p => p.l > 0);
 
     requestAnimationFrame(draw);
 }
 draw();
+
+
+
 
 // contact button: build WhatsApp link (no phone required)
 const contactBtn = document.getElementById('contactBtn');
@@ -134,4 +167,3 @@ if (contactBtn) {
     contactBtn.setAttribute('target', '_blank');
     contactBtn.setAttribute('rel', 'noopener');
 }
-

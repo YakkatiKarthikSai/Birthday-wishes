@@ -1,3 +1,4 @@
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -222,4 +223,21 @@ canvas {
 }
 @keyframes blink {
   50% { border-color: transparent; }
+}
+/* 🌸 Love background glow overlay */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(255,160,200,.15), transparent 45%),
+    radial-gradient(circle at 70% 60%, rgba(200,150,255,.12), transparent 50%);
+  animation: lovePulse 10s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes lovePulse {
+  0% { opacity: .6; }
+  100% { opacity: 1; }
 }
