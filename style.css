@@ -1,0 +1,225 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Poppins', system-ui;
+  min-height: 100vh;
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(circle at top, rgba(255,120,170,0.25), transparent 40%),
+    radial-gradient(circle at bottom, rgba(180,120,255,0.25), transparent 45%),
+    linear-gradient(180deg, #140015, #050007);
+}
+
+/* Love aurora */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,100,170,0.25), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(200,140,255,0.25), transparent 40%);
+  animation: floatBg 14s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes floatBg {
+  to { transform: translateY(-40px); }
+}
+
+canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Slides */
+.scene {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: 1s ease;
+  pointer-events: none;
+  text-align: center;
+  padding: 24px;
+}
+
+.scene.active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+/* Text */
+.love-glow {
+  text-shadow: 0 0 25px rgba(255,140,200,0.8);
+}
+
+.reveal {
+  opacity: 0;
+  animation: fadeUp 1.2s forwards;
+}
+.delay { animation-delay: 0.6s; }
+.delay2 { animation-delay: 1.2s; }
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(-12px); }
+}
+
+.story-text {
+  max-width: 360px;
+  line-height: 1.7;
+  margin-top: 12px;
+  opacity: 0.92;
+}
+
+/* Gift */
+.gift-box {
+  font-size: clamp(4.5rem, 20vw, 6.5rem);
+  cursor: pointer;
+  animation: float 2.5s infinite;
+}
+
+@keyframes float {
+  50% { transform: translateY(-15px); }
+}
+
+/* Buttons */
+.next-btn {
+  margin-top: 24px;
+  padding: 12px 32px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #ff6ea9, #b983ff);
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.big-text {
+  font-size: clamp(2.4rem, 9vw, 4rem);
+}
+
+/* Music */
+.music-btn {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  z-index: 5;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  padding: 10px 14px;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.music-btn.playing {
+  background: rgba(255,255,255,0.25);
+}
+.music-btn svg {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+.music-btn svg path {
+  fill: currentColor;
+}
+.music-btn .bar {
+  animation: soundwave 1s infinite;
+  transform-origin: bottom;
+}
+.music-btn .bar:nth-child(1) {
+  animation-delay: 0s;
+}
+.music-btn .bar:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.music-btn .bar:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes soundwave {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(1.6); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .story-text {
+    font-size: 0.9rem;
+  }
+}
+@media (min-width: 768px) {
+  .story-text {
+    font-size: 1.1rem;
+  }
+}
+@media (min-width: 1024px) {
+  .story-text {
+    font-size: 1.2rem;
+  }
+}
+@media (min-width: 1280px) {
+  .story-text {
+    font-size: 1.3rem;
+  }
+}
+@media (min-width: 1536px) {
+  .story-text {
+    font-size: 1.4rem;
+  }
+}
+@media (min-width: 1920px) {
+  .story-text {
+    font-size: 1.5rem;
+  }
+}
+@media (min-width: 2560px) {
+  .story-text {
+    font-size: 1.6rem;
+  }
+}
+
+/* CTA card */
+.cta-card {
+  background: rgba(255,255,255,0.03);
+  padding: 28px;
+  border-radius: 14px;
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+.cta-btn {
+  padding: 12px 28px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(90deg,#ff9ecb,#c7a3ff);
+  color: #111;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Typing effect for final message */
+.typing {
+  display: inline-block;
+  font-family: 'Poppins', monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: .12em solid rgba(255,255,255,0.85);
+  width: 0ch;
+  animation: typing 3s steps(28,end) forwards, blink .75s step-end infinite;
+}
+
+@keyframes typing {
+  to { width: 36ch; }
+}
+@keyframes blink {
+  50% { border-color: transparent; }
+}

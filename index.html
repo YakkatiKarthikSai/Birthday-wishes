@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>For You ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <audio id="bgMusic" src="music.mp3" preload="auto" loop></audio>
+    <button id="musicToggle" class="music-btn">🔊</button>
+
+    <canvas id="effects"></canvas>
+
+    <!-- SLIDE 1 -->
+    <section class="scene active" id="slide1">
+        <div class="gift-box" id="openBox">🎁</div>
+        <p class="hint">Tap gently… This is made with love 💕</p>
+    </section>
+
+    <!-- SLIDE 2 -->
+    <section class="scene" id="slide2">
+        <h1 class="reveal love-glow">Happy Birthday 💖</h1>
+        <h2 class="reveal delay">My frnd!!</h2>
+        <p class="reveal delay2">Today is all about *you* ✨</p>
+        <button class="next-btn">Next 💫</button>
+    </section>
+
+    <!-- SLIDE 3 -->
+    <section class="scene" id="slide3">
+        <h1 class="love-glow">You Are Special 🌸</h1>
+        <p class="story-text">
+            Your smile changes moments,<br>
+            your kindness changes people,<br>
+            and your presence makes life brighter 💞
+        </p>
+        <button class="next-btn">Continue 🌷</button>
+    </section>
+
+    <!-- SLIDE 4 -->
+    <section class="scene" id="slide4">
+        <h1 class="big-text love-glow">Cheers to 20 🥂</h1>
+        <p class="story-text">
+            To new dreams, beautiful memories,<br>
+            and a future full of love ✨
+        </p>
+        <button id="fireBtn" class="next-btn">Celebrate 🎆</button>
+    </section>
+
+    <!-- SLIDE 5 -->
+    <section class="scene" id="slide5">
+        <h1 class="love-glow">Always Remember 💖</h1>
+        <p class="story-text">
+            You are loved more than you know,<br>
+            today and always 🌙
+        </p>
+        <button class="next-btn">one last question !!</button>
+    </section>
+
+    <!-- SLIDE 6 -->
+    <section class="scene" id="slide6">
+        <h1 class="love-glow">I Wanna Be Your Frnd 🤍</h1>
+        <p class="story-text">
+            Would you like to be my friend? <br>
+            Let's make memories together 🌟
+        </p>
+        <button class="next-btn">Aww, yes! 🤝</button>
+    </section>
+
+    <!-- SLIDE 7 (Final CTA) -->
+    <section class="scene" id="slide7">
+        <div class="cta-card">
+            <h1 class="love-glow">Stay Close 💬</h1>
+            <p class="story-text typing">If u really like this,text me whenever u are free</p>
+            <a class="next-btn cta-btn" id="contactBtn" href="#" target="_blank" rel="noopener">Text Me 📱</a>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
