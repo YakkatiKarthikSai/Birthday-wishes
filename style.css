@@ -265,3 +265,46 @@ body::after {
   0% { opacity: .6; }
   100% { opacity: 1; }
 }
+
+/* Slide 1 layout */
+.intro-wrap {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Left content */
+.intro-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Side image */
+.side-pic {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 0 25px rgba(255,150,200,0.45);
+  animation: floatPic 4s ease-in-out infinite;
+}
+
+/* Soft floating animation */
+@keyframes floatPic {
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .intro-wrap {
+    flex-direction: column;
+  }
+
+  .side-pic {
+    width: 130px;
+    height: 130px;
+  }
+}
