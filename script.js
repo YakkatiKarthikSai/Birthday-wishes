@@ -99,6 +99,7 @@ document.querySelectorAll(".next-btn").forEach(btn => {
 
 /* ❤️ Floating Hearts + Fireworks */
 let hearts = [];
+let fireworks = [];
 
 function spawnHearts() {
     hearts.push({
@@ -166,4 +167,43 @@ if (contactBtn) {
     contactBtn.setAttribute('href', href);
     contactBtn.setAttribute('target', '_blank');
     contactBtn.setAttribute('rel', 'noopener');
+}
+
+// --- Preview options handlers (slide8) ---
+const optConfetti = document.getElementById('optConfetti');
+const optTyping = document.getElementById('optTyping');
+const optTheme = document.getElementById('optTheme');
+const previewText = document.getElementById('previewText');
+
+if (optConfetti) {
+    optConfetti.onclick = () => {
+        fireworksBurst(canvas.width / 2, canvas.height / 3);
+        if (previewText) previewText.textContent = 'Confetti previewed 🎉';
+    };
+}
+
+if (optTyping) {
+    optTyping.onclick = () => {
+        const sample = "This is a typing + voice preview — looks nice, right?";
+        if (previewText) {
+            previewText.textContent = '';
+            let i = 0;
+            const t = setInterval(() => {
+                previewText.textContent += sample[i++] || '';
+                if (i >= sample.length) clearInterval(t);
+            }, 24);
+        }
+        if ('speechSynthesis' in window) {
+            const u = new SpeechSynthesisUtterance(sample);
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(u);
+        }
+    };
+}
+
+if (optTheme) {
+    optTheme.onclick = () => {
+        document.body.classList.toggle('alt-theme');
+        if (previewText) previewText.textContent = document.body.classList.contains('alt-theme') ? 'Alt theme applied' : 'Default theme';
+    };
 }
