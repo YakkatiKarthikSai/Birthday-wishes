@@ -88,18 +88,23 @@ setInterval(drawLoveBackground, 30);
 /* 🎆 FIREWORKS */
 const fireworks = [];
 
-document.getElementById("openBox").onclick = () => {
-    startMusic();
-    setTimeout(() => showSlide(1), 800);
-};
+const openBox = document.getElementById("openBox");
+if (openBox) {
+    openBox.onclick = () => {
+        startMusic();
+        setTimeout(() => showSlide(1), 800);
+    };
+}
 
-document.querySelectorAll(".next-btn").forEach(btn => {
-    btn.onclick = () => showSlide(current + 1);
+// Use event delegation for next buttons to ensure all are clickable
+document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("next-btn")) {
+        showSlide(current + 1);
+    }
 });
 
 /* ❤️ Floating Hearts + Fireworks */
 let hearts = [];
-let fireworks = [];
 
 function spawnHearts() {
     hearts.push({
@@ -122,12 +127,14 @@ function fireworksBurst(x, y) {
     }
 }
 
-document.getElementById("fireBtn").onclick = () => {
-    music.volume = 0.85;
-    fireworksBurst(canvas.width / 2, canvas.height / 2);
-    // Also advance to the next slide after a short delay so fireworks are visible
-    setTimeout(() => showSlide(current + 1), 800);
-};
+// Use event delegation for fire button
+document.addEventListener("click", (e) => {
+    if (e.target.id === "fireBtn") {
+        music.volume = 0.85;
+        fireworksBurst(canvas.width / 2, canvas.height / 2);
+        setTimeout(() => showSlide(current + 1), 800);
+    }
+});
 
 function draw() {
     drawLoveBackground();
